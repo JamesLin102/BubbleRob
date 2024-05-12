@@ -45,7 +45,7 @@ def simulate():
     pbar = tqdm(range(int(sim_time / 0.05)), desc="Simulating")  # Assuming simulation step is 0.05 seconds
     for _ in pbar:
         t = sim.getSimulationTime()
-        pbar.set_description(f"Simulating (time: {t:.2f} [s])")
+        pbar.set_description(f"Simulating (time: {t:.2f} s)")
 
         # Vision
         raw_img, resolution = sim.getVisionSensorImg(visionSensor)
@@ -99,8 +99,9 @@ def simulate():
 
         # Find the red cylinder
         judgement = color_img[100:150, 100:150, 0]
-        if result_pro[0] > 0 and np.mean(judgement) > 180:
+        if result_pro[0] > 0 and np.mean(judgement) > 175:
             pbar.close()
+            print("Find the red cylinder and stop the simulation")
             break
 
         sim.step()  # Perform a single simulation step
