@@ -98,8 +98,8 @@ def simulate():
             sim.setJointTargetVelocity(rightMotor, -current_speed / 8)
 
         # Find the red cylinder
-        judgement = color_img[100:150, 100:150, 0]
-        if result_pro[0] > 0 and np.mean(judgement) > 175:
+        threshold = color_img[100:150, 100:150, 0]
+        if result_pro[0] > 0 and np.mean(threshold) > 175:
             pbar.close()
             print("Find the red cylinder and stop the simulation")
             break
